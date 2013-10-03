@@ -1,8 +1,11 @@
 package strangecraft.tileentites;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityLabBench extends TileEntity implements IInventory {
@@ -10,7 +13,7 @@ public class TileEntityLabBench extends TileEntity implements IInventory {
 	private ItemStack[] items;
 	
 	public TileEntityLabBench() {
-		items = new ItemStack[1];
+		items = new ItemStack[3];	
 	}
 	
 	@Override
@@ -59,7 +62,7 @@ public class TileEntityLabBench extends TileEntity implements IInventory {
 
 	@Override
 	public String getInvName() {
-		return "InventoryLabbench";
+		return "InventoryMachine";
 	}
 
 	@Override
@@ -85,7 +88,43 @@ public class TileEntityLabBench extends TileEntity implements IInventory {
 
 	@Override
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
-		return true;
+		return itemstack.itemID == Block.anvil.blockID;
+	}
+	
+	@Override
+	public void writeToNBT(NBTTagCompound compound) {
+		super.writeToNBT(compound);
+		
+		NBTTagList items = new NBTTagList();
+		
+		for (int i = 0; i < getSizeInventory(); i++) {		
+			ItemStack stack = getStackInSlot(i);
+			
+			if (stack != null) {
+				NBTTagCompound item = new NBTTagCompound();
+				item.setByte("Slot", (byte)i);
+				stack.writeToNBT(item);
+				items.appendTag(item);
+			}
+		}
+		
+		compound.setTag("Items", items);
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound compound) {
+		super.readFromNBT(compound);
+		
+		NBTTagList items = compound.getTagList("Items");
+		
+		for (int i = 0; i < items.tagCount(); i++) {
+			NBTTagCompound item = (NBTTagCompound)items.tagAt(i);
+			int slot = item.getByte("Slot");
+			
+			if (slot >= 0 && slot < getSizeInventory()) {
+				setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(item));
+			}
+		}
 	}
 
 }

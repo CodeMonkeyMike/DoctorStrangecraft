@@ -60,8 +60,17 @@ public class BlockLabBench extends BlockContainer {
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
 		if (!world.isRemote) {
-			// Parameter 3 is the option which will tell which case to use on get...GuiElement
 			FMLNetworkHandler.openGui(player, Strangecraft.instance, 0, world, x, y, z);
+			
+			/*int meta = world.getBlockMetadata(x, y, z);
+			
+			int type = meta / 2;
+			
+			int disabled = meta % 2 == 0 ? 1 : 0;
+			
+			int newMeta = type * 2 + disabled;		
+			
+			world.setBlockMetadataWithNotify(x, y, z, newMeta, 3);*/
 		}
 	
 		return true;
