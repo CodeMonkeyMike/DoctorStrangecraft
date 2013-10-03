@@ -28,8 +28,11 @@ public class GuiLabbench extends GuiContainer {
 	protected void drawGuiContainerBackgroundLayer(float f, int x, int y) {
 		GL11.glColor4f(1, 1, 1, 1);
 		
+		int var5 = (this.width - this.xSize) / 2;
+		int var6 = (this.height - this.ySize) / 2;
+		
 		Minecraft.getMinecraft().func_110434_K().func_110577_a(texture);
-		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
+		drawTexturedModalRect(var5, var6, 0, 0, this.xSize, this.ySize);
 	}
 
 }
