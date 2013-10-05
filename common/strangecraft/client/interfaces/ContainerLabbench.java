@@ -1,9 +1,13 @@
 package strangecraft.client.interfaces;
 
+import java.util.Arrays;
+
 import strangecraft.tileentites.TileEntityLabBench;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
@@ -32,7 +36,36 @@ public class ContainerLabbench extends Container {
 	
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int i) {
+		Slot slot = getSlot(i);
+		
+		if (slot != null && slot.getHasStack()) {
+			ItemStack stack = slot.getStack();
+			ItemStack result = stack.copy();
+			
+			if (i >= 36) {
+				if (!mergeItemStack(stack, 0, 36, false)) {
+					return null;
+				}
+				// No idea about this need to figure it out
+			}else if(stack.itemID != Block.anvil.blockID || !mergeItemStack(stack, 36, 36 + labbench.getSizeInventory(), false)) {
+				return null;
+			}
+			
+			if (stack.stackSize == 0) {
+				slot.putStack(null);
+			}else{
+				slot.onSlotChanged();
+			}
+			
+			slot.onPickupFromSlot(player, stack);
+			
+			return result;
+		}
+		
 		return null;
 	}
-
+	
+	public TileEntityLabBench getMachine() {
+		return labbench;
+	}
 }
