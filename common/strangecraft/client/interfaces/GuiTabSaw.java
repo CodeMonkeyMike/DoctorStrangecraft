@@ -1,9 +1,13 @@
 package strangecraft.client.interfaces;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
+@SideOnly(Side.CLIENT)
 public class GuiTabSaw extends GuiTab {
 
-	public GuiTabSaw(String name, int id) {
-		super(name, id);
+	public GuiTabSaw(int id) {
+		super("Saw", id);
 		// TODO Auto-generated constructor stub
 	}
 

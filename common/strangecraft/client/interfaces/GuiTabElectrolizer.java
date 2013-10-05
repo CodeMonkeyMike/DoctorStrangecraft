@@ -1,9 +1,13 @@
 package strangecraft.client.interfaces;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
+@SideOnly(Side.CLIENT)
 public class GuiTabElectrolizer extends GuiTab {
 
-	public GuiTabElectrolizer(String name, int id) {
-		super(name, id);
+	public GuiTabElectrolizer(int id) {
+		super("Electrolizer", id);
 		// TODO Auto-generated constructor stub
 	}
 

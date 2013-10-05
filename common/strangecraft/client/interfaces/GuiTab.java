@@ -8,7 +8,8 @@ public abstract class GuiTab extends GuiRectangle {
 	private String name;
 
 	public GuiTab(String name, int id) {
-		super(8, 80 + id * 16, 20, 16);
+		// Super sloppy ternary operators FTW
+		super((id < 4)?28 : 208,(id < 4)?(id * 20)+7 : ((id - 4) * 20)+7, 20, 20);
 		
 		this.name = name;
 	}

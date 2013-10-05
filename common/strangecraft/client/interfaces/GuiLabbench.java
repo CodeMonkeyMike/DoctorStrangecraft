@@ -45,26 +45,23 @@ public class GuiLabbench extends GuiContainer {
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int x, int y) {
 		GL11.glColor4f(1, 1, 1, 1);
-		
+		Minecraft.getMinecraft().func_110434_K().func_110577_a(texture);
+		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 		for (GuiRectangle tab : tabs) {
-			int srcY = 43;
+			int srcX = 208;
 			
 			if (tab == activeTab) {
-				srcY += 32;
-			}else if(tab.inRect(this, x, y)) {
-				srcY += 16;
+				srcX -= 20;
 			}
+			// hover
+//			else if(tab.inRect(this, x, y)) {
+//				srcY += 16;
+//			}
 			
-			tab.draw(this, xSize, srcY);
+			tab.draw(this, srcX, 224);
 		}
 		
 		activeTab.drawBackground(this, x, y);
-		
-		int var5 = (this.width - this.xSize) / 2;
-		int var6 = (this.height - this.ySize) / 2;
-		
-		Minecraft.getMinecraft().func_110434_K().func_110577_a(texture);
-		drawTexturedModalRect(var5, var6, 0, 0, this.xSize, this.ySize);
 	}
 	
 	protected int getLeft() {

@@ -1,9 +1,13 @@
 package strangecraft.client.interfaces;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
+@SideOnly(Side.CLIENT)
 public class GuiTabMixer extends GuiTab {
 
-	public GuiTabMixer(String name, int id) {
-		super(name, id);
+	public GuiTabMixer(int id) {
+		super("Mixer", id);
 		// TODO Auto-generated constructor stub
 	}
 
