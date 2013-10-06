@@ -50,8 +50,12 @@ public class GuiLabbench extends GuiContainer {
 		for (GuiRectangle tab : tabs) {
 			int srcX = 208;
 			
-			if (tab == activeTab) {
+			int id = tab.getId();
+			
+			if (tab == activeTab && id < 4) {
 				srcX -= 20;
+			} else if (tab == activeTab) {
+				srcX -= 40;
 			}
 			// hover
 //			else if(tab.inRect(this, x, y)) {

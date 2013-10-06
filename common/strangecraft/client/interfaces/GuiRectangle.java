@@ -8,12 +8,14 @@ public class GuiRectangle {
 	private int y;
 	private int w;
 	private int h;
+	private int id;
 	
-	public GuiRectangle(int x, int y, int w, int h) {
+	public GuiRectangle(int x, int y, int w, int h, int id) {
 		this.x = x;
 		this.y = y;
 		this.w = w;
 		this.h = h;
+		this.id = id;
 	}
 	
 	public boolean inRect(GuiLabbench gui, int mouseX, int mouseY) {
@@ -31,9 +33,14 @@ public class GuiRectangle {
 		this.y = y;
 	}
 	
+	public int getId() {
+		return id;
+		
+	}
 	
 	public void draw(GuiLabbench gui, int srcX, int srcY) {
 		gui.drawTexturedModalRect(gui.getLeft() + x, gui.getTop() + y, srcX, srcY, w, h);
+		gui.drawTexturedModalRect(gui.getLeft() + x + 2, gui.getTop() + y + 2, id * 16, srcY, 16, 16);
 	}
 	
 	public void drawString(GuiLabbench gui, int mouseX, int mouseY, String str) {
