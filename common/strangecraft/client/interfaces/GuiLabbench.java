@@ -45,7 +45,7 @@ public class GuiLabbench extends GuiContainer {
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int x, int y) {
 		GL11.glColor4f(1, 1, 1, 1);
-		Minecraft.getMinecraft().func_110434_K().func_110577_a(texture);
+		Minecraft.getMinecraft().renderEngine.bindTexture(texture);
 		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 		for (GuiRectangle tab : tabs) {
 			int srcX = 208;
