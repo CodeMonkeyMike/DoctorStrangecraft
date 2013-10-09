@@ -10,7 +10,7 @@ public abstract class GuiTab extends GuiRectangle {
 
 	public GuiTab(String name, int id) {
 		// Super sloppy ternary operators FTW
-		super((id < 4)?28 : 208,(id < 4)?(id * 20)+7 : ((id - 4) * 20)+7, 20, 20, id);
+		super((id < 4)?8 : 228,(id < 4)?(id * 20)+7 : ((id - 4) * 20)+7, 20, 20, id);
 		
 		this.name = name;
 		this.id = id;

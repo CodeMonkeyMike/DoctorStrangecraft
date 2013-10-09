@@ -40,7 +40,9 @@ public class GuiRectangle {
 	
 	public void draw(GuiLabbench gui, int srcX, int srcY) {
 		gui.drawTexturedModalRect(gui.getLeft() + x, gui.getTop() + y, srcX, srcY, w, h);
-		gui.drawTexturedModalRect(gui.getLeft() + x + 2, gui.getTop() + y + 2, id * 16, srcY, 16, 16);
+		if (id >= 0){
+			gui.drawTexturedModalRect(gui.getLeft() + x + 2, gui.getTop() + y + 2, id * 16, srcY, 16, 16);
+		}
 	}
 	
 	public void drawString(GuiLabbench gui, int mouseX, int mouseY, String str) {

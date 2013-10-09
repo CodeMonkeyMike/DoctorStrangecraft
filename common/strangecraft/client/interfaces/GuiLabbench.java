@@ -25,7 +25,7 @@ public class GuiLabbench extends GuiContainer {
 		super(new ContainerLabbench(invPlayer, labbench));
 		
 		xSize = 256;
-		ySize = 224;
+		ySize = 256;
 		
 		tabs = new GuiTab[] {
 				new GuiTabDistillationTower(0),
@@ -40,13 +40,18 @@ public class GuiLabbench extends GuiContainer {
 		activeTab = tabs[0];
 	}
 
-	private static final ResourceLocation texture = new ResourceLocation("strangecraft", "textures/gui/labbench.png");
+	private static final ResourceLocation background = new ResourceLocation("strangecraft", "textures/gui/labbench.png");
+	private static final ResourceLocation icons = new ResourceLocation("strangecraft", "textures/gui/labbench_icons.png");
 	
 	@Override
-	protected void drawGuiContainerBackgroundLayer(float f, int x, int y) {
+	protected void drawGuiContainerBackgroundLayer(float f, int x, int y) {	
 		GL11.glColor4f(1, 1, 1, 1);
-		Minecraft.getMinecraft().renderEngine.bindTexture(texture);
+		this.mc.getTextureManager().bindTexture(background);
 		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
+		
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        this.mc.getTextureManager().bindTexture(icons);
+        
 		for (GuiRectangle tab : tabs) {
 			int srcX = 208;
 			
@@ -62,7 +67,7 @@ public class GuiLabbench extends GuiContainer {
 //				srcY += 16;
 //			}
 			
-			tab.draw(this, srcX, 224);
+			tab.draw(this, srcX, 0);
 		}
 		
 		activeTab.drawBackground(this, x, y);

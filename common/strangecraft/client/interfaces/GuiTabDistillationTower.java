@@ -10,11 +10,13 @@ public class GuiTabDistillationTower extends GuiTab {
 		super("Distillation Tower", id);
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	private static final GuiRectangle tower = new GuiRectangle(62, 46, 130, 97, -1);
+	//private static final GuiRectangle heating = new GuiRectangle();
+	
 	@Override
 	public void drawBackground(GuiLabbench gui, int x, int y) {
-		// TODO Auto-generated method stub
-		
+		tower.draw(gui, 126, 20);
 	}
 
 	@Override
