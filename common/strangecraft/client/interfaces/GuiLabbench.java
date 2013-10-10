@@ -8,6 +8,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import strangecraft.tileentites.TileEntityLabBench;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -17,7 +18,7 @@ import net.minecraft.util.ResourceLocation;
 @SideOnly(Side.CLIENT)
 public class GuiLabbench extends GuiContainer {
 
-	private TileEntityLabBench labbench;
+	protected TileEntityLabBench labbench;
 	private final GuiTab[] tabs;
 	private GuiTab activeTab;
 	
@@ -109,5 +110,9 @@ public class GuiLabbench extends GuiContainer {
 				}
 			}
 		}
+	}
+
+	protected FontRenderer getFontRenderer() {
+		return fontRenderer;
 	}
 }

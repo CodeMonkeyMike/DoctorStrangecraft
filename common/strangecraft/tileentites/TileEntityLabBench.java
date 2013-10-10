@@ -11,6 +11,7 @@ import net.minecraft.tileentity.TileEntity;
 public class TileEntityLabBench extends TileEntity implements IInventory {
 
 	private ItemStack[] items;
+	public int heatSetting = 20;
 	
 	public TileEntityLabBench() {
 		items = new ItemStack[3];	
@@ -109,6 +110,8 @@ public class TileEntityLabBench extends TileEntity implements IInventory {
 		}
 		
 		compound.setTag("Items", items);
+		
+		compound.setByte("Heat", (byte)heatSetting);
 	}
 	
 	@Override
@@ -124,6 +127,16 @@ public class TileEntityLabBench extends TileEntity implements IInventory {
 			if (slot >= 0 && slot < getSizeInventory()) {
 				setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(item));
 			}
+		}
+		
+		heatSetting = compound.getByte("Heat");
+	}
+	
+	public void receiveInterfaceEvent(byte eventId, byte val) {
+		switch (eventId) {
+			case 0:
+				heatSetting = val;
+				break;
 		}
 	}
 
